@@ -117,6 +117,8 @@ values
 
 You can now run the backend API again and if you try to GET the list of todo, only the authorized todo will be available. Make sure to authenticated your REST calls by [passing the generated JWT token](https://support.insomnia.rest/article/38-authentication) as the [Bearer Token](https://stackoverflow.com/questions/25838183/what-is-the-oauth-2-0-bearer-token-exactly).
 
+## Conclusion
+
 Done, your GET endpoint is now secured.
 
 I'll leave it to you to move forward and secure all the other endpoint for POST, DELETE and PATCH, as the approach is very similar to what has been done already for the GET one.
