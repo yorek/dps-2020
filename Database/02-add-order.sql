@@ -1,33 +1,16 @@
-create schema [web];
+/*
+	Add new field
+*/
+alter table dbo.todo
+add [order] int null 
 go
 
-create user [todo-backend] with password = 'Super_Str0ng*P@ZZword!'
-go
-
-alter role [db_datareader] add member [todo-backend];
-go
-
-grant execute on schema::[web] to [todo-backend]
-go
-
-create sequence dbo.[global_sequence]
-as int
-start with 1
-increment by 1;
-go
-
-drop table if exists dbo.todo;
-go
-
-create table dbo.todo
-(
-	[id] int not null primary key default (next value for [global_sequence]),
-	[title] nvarchar(100) not null,
-	[completed] bit not null default (0),
-	[order] int null 
-)
-go
-
+/*
+	GET
+	Accepted Input: 
+	''
+	'[{"id":1}, {"id":2}]'
+*/
 create or alter procedure [web].[get_todo]
 @payload nvarchar(max) = null
 as
@@ -69,6 +52,11 @@ begin
 end;
 go
 
+/*
+	POST
+	Accepted Input: 
+	'[{"title":"todo title", "completed": 0}, {"title": "another todo"}]'
+*/
 create or alter procedure [web].[post_todo]
 @payload nvarchar(max)
 as
@@ -150,27 +138,3 @@ begin
 	exec [web].[get_todo] @newPayload;
 end
 go
-
-/*
-	DELETE
-	Accepted Input: 
-	'[{"id":1}, {"id":2}]'
-*/
-create or alter procedure [web].[delete_todo]
-@payload nvarchar(max) = null
-as
-begin
-	-- delete all
-	if (@payload = '' or @payload is null) begin;
-		delete from dbo.[todo];
-		return;
-	end
-
-	-- return the specified todos
-	if (isjson(@payload) <> 1) begin;
-		throw 50000, 'Payload is not a valid JSON document', 16;
-	end;
-
-	delete t from dbo.todo t 
-	where exists (select p.id from openjson(@payload) with (id int) as p where p.id = t.id);
-end

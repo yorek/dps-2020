@@ -71,7 +71,7 @@ namespace DPS2020
 
             app.UseCors("AllowOrigin");  
 
-            app.UseAuthentication();
+            //app.UseAuthentication();
 
             app.UseAuthorization();
 

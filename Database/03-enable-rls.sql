@@ -17,6 +17,14 @@ create table rls.todo_permissions
 )
 go
 
+/*
+    Create Security Predicate Function
+
+    Note: 
+    Remove the comments if you want to make sure that only authorized users, accessing via the backend API, 
+    will be able to see the stored todos, and allow any db_owner to always see anything,
+    even if RLS is enabled
+*/
 create or alter function rls.fn_security_predicate(@todo_id int)  
 returns table
 with schemabinding
@@ -38,6 +46,9 @@ where
 --	is_member('db_owner') = 1
 go
 
+/*
+    Create the Security Policy but keep it *disabled*
+*/
 create security policy rls.todo_access_policy
 add filter predicate rls.fn_security_predicate(id) on dbo.[todo]
 with (state = off);  
