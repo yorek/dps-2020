@@ -20,7 +20,7 @@ In this first step, you will create a fully functioning [backend REST API](http:
 
 the test can be download and executed locally using a local server, like [Visual Studio Code Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 
-[https://github.com/TodoBackend/todo-backend-js-spec]
+[Executable Specs in JavaScript for the Todo-Backend API](https://github.com/TodoBackend/todo-backend-js-spec)
 
 To run the backend API locally, configure the `appsettings.json` to include connection string to the Azure SQL database you want to use for the demo:
 
