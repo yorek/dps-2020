@@ -1,7 +1,10 @@
-# Data Platform Summit 2020 
-# Create secure API with .NET, Dapper and Azure SQL
+# Data Platform Summit 2020 Demos
 
-Demo used in the "Data Platform Summit 2020" for the session "Create secure API with .NET, Dapper and Azure SQL".
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+
+Demo used in the "Data Platform Summit 2020" for the session 
+
+**Create secure API with .NET, Dapper and Azure SQL**
 
 ## Pre-requisites
 
