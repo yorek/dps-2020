@@ -46,7 +46,7 @@ namespace DPS2020.Controllers
                     qp.Add("payload", JsonSerializer.Serialize(p));
                 }
                 
-                var userHashId = GetUserHashId();
+                var userHashId = await GetUserHashId();
 
                 await conn.OpenAsync();
                 //await conn.ExecuteAsync("sys.sp_set_session_context", new { @key = "user-hash-id", @value = userHashId, @read_only = 1 }, commandType: CommandType.StoredProcedure );
