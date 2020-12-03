@@ -100,7 +100,7 @@ You now have to update the REST API sample so that it will be able to use that t
 app.UseAuthentication();
 ```
 
-to allow a user to be authenticated and thus then authorized, and also uncomment the `Authorize` attribute at [line 32](https://github.com/yorek/dps-2020/blob/main/Controllers/ToDoController.cs#L32) of `./Controllers/ToDoController.cs` and [line 52)(https://github.com/yorek/dps-2020/blob/main/Controllers/ToDoController.cs#L52) in the same file to pass to Azure SQL database the Session Context with the User Hash Id available in the JWT token:
+to allow a user to be authenticated and thus then authorized, and also uncomment the `Authorize` attribute at [line 32](https://github.com/yorek/dps-2020/blob/main/Controllers/ToDoController.cs#L32) of `./Controllers/ToDoController.cs` and [line 52](https://github.com/yorek/dps-2020/blob/main/Controllers/ToDoController.cs#L52) in the same file to pass to Azure SQL database the Session Context with the User Hash Id available in the JWT token:
 
 ```csharp
 await conn.ExecuteAsync("sys.sp_set_session_context", new { @key = "user-hash-id", @value = userHashId, @read_only = 1 }, commandType: CommandType.StoredProcedure );
